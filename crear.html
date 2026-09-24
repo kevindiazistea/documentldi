@@ -1,51 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Crear Búsqueda</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Búsqueda · Listas de Informados</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-  <div class="container">
+  <header class="topbar">
+    <div class="topbar-in">
+      <a class="marca" href="index.html">
+        <span class="marca-logo"><span style="background:#6F80E0"></span><span style="background:#F08A3E"></span><span style="background:#F2685F"></span></span>
+        Compliance One <small>Listas de Informados</small>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Informe</a>
+        <a href="crear.html" class="activo" id="navCrear">Nueva búsqueda</a>
+      </nav>
+    </div>
+  </header>
 
-    <h1>Crear / Editar Búsqueda</h1>
+  <main class="container">
 
-    <label>Nombre de la búsqueda:</label>
-    <input id="nombreBusqueda" class="input" placeholder="Ej: Búsqueda PEP">
-
-    <h2>Fuentes disponibles</h2>
-
-    <div class="filters">
-      <input id="filtroTexto" class="input" placeholder="Buscar por título..." onkeyup="filtrarFuentes()">
-
-      <select id="filtroTipo" class="input" onchange="filtrarFuentes()">
-        <option value="">Filtrar por tipo</option>
-        <option value="PEP">PEP</option>
-        <option value="Noticias">Noticias</option>
-        <option value="Judiciales">Judiciales</option>
-        <option value="Sancionado">Sancionado</option>
-        <option value="Sujeto Obligado">Sujeto Obligado</option>
-        <option value="Terrorismo">Terrorismo</option>
-      </select>
-
-      <select id="filtroPais" class="input" onchange="filtrarFuentes()">
-        <option value="">Filtrar por país</option>
-      </select>
+    <div class="encabezado">
+      <div>
+        <h1 id="tituloPagina">Nueva búsqueda</h1>
+        <p>Poné un nombre, ajustá la similitud y marcá las fuentes que la componen.</p>
+      </div>
     </div>
 
-    <div id="listaFuentes" class="cards"></div>
+    <section class="caja">
+      <label for="nombreBusqueda">Nombre de la búsqueda</label>
+      <input id="nombreBusqueda" class="input input-grande" placeholder="Ej: Búsqueda PEP" autocomplete="off">
 
-    <button class="btn" onclick="guardarBusqueda()">Guardar búsqueda</button>
-    <a class="btn" href="index.html">Volver</a>
+      <span class="etiqueta">Parámetros de coincidencia</span>
+      <div class="parametros">
+        <div class="parametro">
+          <label for="similitud">Similitud</label>
+          <div class="parametro-control">
+            <input type="range" id="similitudRango" min="0" max="100" step="1" aria-label="Similitud">
+            <span class="parametro-valor"><input type="number" id="similitud" class="input" min="0" max="100" step="1">%</span>
+          </div>
+        </div>
+        <div class="parametro">
+          <label for="similitudInversa">Similitud inversa</label>
+          <div class="parametro-control">
+            <input type="range" id="similitudInversaRango" min="0" max="100" step="1" aria-label="Similitud inversa">
+            <span class="parametro-valor"><input type="number" id="similitudInversa" class="input" min="0" max="100" step="1">%</span>
+          </div>
+        </div>
+      </div>
 
+      <span class="etiqueta">Filtrar fuentes</span>
+      <div class="filters">
+        <input id="filtroTexto" class="input" placeholder="Buscar por título o código…" oninput="filtrarFuentes()">
+        <select id="filtroPais" class="input" onchange="filtrarFuentes()">
+          <option value="">Todos los países</option>
+        </select>
+        <select id="filtroVista" class="input" onchange="filtrarFuentes()">
+          <option value="">Todas las fuentes</option>
+          <option value="marcadas">Solo las marcadas</option>
+        </select>
+      </div>
+      <div class="tipos-rapidos" id="filtroTipos"></div>
+    </section>
+
+    <div class="resultado-info">
+      <span id="infoResultados"></span>
+      <span>
+        <button class="btn-texto" onclick="marcarVisibles(true)">Marcar las que se ven</button>
+        <button class="btn-texto" onclick="marcarVisibles(false)">Desmarcar las que se ven</button>
+      </span>
+    </div>
+
+    <div id="listaFuentes" class="lista-fuentes"></div>
+
+  </main>
+
+  <div class="barra-acciones">
+    <div class="barra-acciones-in">
+      <span class="estado" id="estadoSeleccion"></span>
+      <a class="btn btn-sec" href="index.html">Cancelar</a>
+      <button class="btn" onclick="guardarBusqueda()">Guardar búsqueda</button>
+    </div>
   </div>
 
-  <!-- PDF -->
-  <script src="libs/pdfmake/pdfmake.min.js"></script>
-  <script src="libs/pdfmake/vfs_fonts.js"></script>
-  <script src="js/pdf.js"></script>
-
-  <!-- SOLO crear.js -->
+  <script src="js/comun.js"></script>
   <script src="js/crear.js"></script>
 
 </body>

@@ -1,31 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Detalle de Búsqueda</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalle de búsqueda · Listas de Informados</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-  <div class="container">
+  <header class="topbar">
+    <div class="topbar-in">
+      <a class="marca" href="index.html">
+        <span class="marca-logo"><span style="background:#6F80E0"></span><span style="background:#F08A3E"></span><span style="background:#F2685F"></span></span>
+        Compliance One <small>Listas de Informados</small>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Informe</a>
+        <a href="crear.html">Nueva búsqueda</a>
+      </nav>
+    </div>
+  </header>
 
-    <h1 id="tituloBusqueda"></h1>
+  <main class="container">
 
-    <h2>Fuentes seleccionadas</h2>
-    <div id="fuentesSeleccionadas" class="cards"></div>
+    <div class="encabezado">
+      <div>
+        <h1 id="tituloBusqueda">Búsqueda</h1>
+        <p>Detalle de las fuentes que incluye esta búsqueda.</p>
+      </div>
+      <a class="btn btn-sec" id="btnEditar" href="#">Editar búsqueda</a>
+    </div>
 
-    <a class="btn" onclick="generarDocumento()">Generar PDF</a>
-    <a class="btn" href="index.html">Volver</a>
+    <section class="caja">
+      <div class="resumen" id="resumen"></div>
+      <div class="barra-grande" id="barraGrande"></div>
 
+      <div class="tabla-wrap">
+        <table class="tabla">
+          <thead>
+            <tr><th>Fuente</th><th>País</th><th>Tipo</th><th>Código</th></tr>
+          </thead>
+          <tbody id="fuentesSeleccionadas"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="barra-acciones">
+    <div class="barra-acciones-in">
+      <span class="estado">Cliente: <b id="clienteActual"></b></span>
+      <a class="btn btn-sec" href="index.html">Volver</a>
+      <button class="btn" onclick="generarDocumento()">Generar PDF</button>
+    </div>
   </div>
 
-  <!-- PDF -->
   <script src="libs/pdfmake/pdfmake.min.js"></script>
   <script src="libs/pdfmake/vfs_fonts.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/logo.js"></script>
   <script src="js/pdf.js"></script>
-
-  <!-- VER.JS (FUNDAMENTAL) -->
   <script src="js/ver.js"></script>
 
 </body>
 </html>
-

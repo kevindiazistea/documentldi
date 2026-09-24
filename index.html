@@ -1,37 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Panel del Cliente</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Informe de fuentes · Listas de Informados</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 
-  <div class="container">
+  <header class="topbar">
+    <div class="topbar-in">
+      <a class="marca" href="index.html">
+        <span class="marca-logo"><span style="background:#6F80E0"></span><span style="background:#F08A3E"></span><span style="background:#F2685F"></span></span>
+        Compliance One <small>Listas de Informados</small>
+      </a>
+      <nav class="nav">
+        <a href="index.html" class="activo">Informe</a>
+        <a href="crear.html">Nueva búsqueda</a>
+      </nav>
+    </div>
+  </header>
 
-    <h1>
-    Cliente: 
-    <input id="clienteInput" class="input" placeholder="Ingresar cliente...">
-    </h1>
+  <main class="container">
 
-    <select id="modeloSelect" class="input" onchange="cargarModelo()">
-    <option value="">Seleccionar modelo...</option>
-    <option value="estandar">Modelo estándar</option>
-    </select>
-    <button class="btn" onclick="seleccionarTodo()">Seleccionar todo</button>
-    <button class="btn btn-danger" onclick="deseleccionarTodo()">Deseleccionar todo</button>
-    <h2>Búsquedas creadas</h2>
-    <a class="btn" href="crear.html">+ Crear nueva búsqueda</a>
-    <a class="btn" onclick="generarDocumentoMultiple()">Generar documento único</a>
+    <div class="encabezado">
+      <div>
+        <h1>Armar informe</h1>
+        <p>Elegí el cliente y las búsquedas que querés incluir en el PDF.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+
+      <!-- Columna izquierda: datos del informe -->
+      <aside class="lateral">
+        <section class="caja">
+          <h2>Datos del informe</h2>
+
+          <label for="clienteInput">Cliente</label>
+          <input id="clienteInput" class="input" placeholder="Nombre del cliente" autocomplete="off">
+
+          <label for="modeloSelect">Cargar modelo</label>
+          <select id="modeloSelect" class="input" onchange="cargarModelo()">
+            <option value="">Elegir un modelo…</option>
+            <option value="estandar">Modelo estándar</option>
+          </select>
+          <p class="ayuda">Un modelo reemplaza las búsquedas actuales por un set prearmado.</p>
+        </section>
+      </aside>
+
+      <!-- Columna derecha: búsquedas -->
+      <section>
+        <div class="barra-lista">
+          <h2>Búsquedas</h2>
+          <div class="acciones">
+            <button class="btn-texto" onclick="seleccionarTodo()">Marcar todas</button>
+            <button class="btn-texto" onclick="deseleccionarTodo()">Desmarcar</button>
+            <a class="btn btn-sec" href="crear.html">+ Nueva búsqueda</a>
+          </div>
+        </div>
 
         <div id="listaBusquedas" class="cards"></div>
+      </section>
 
+    </div>
+  </main>
+
+  <!-- Barra fija con el botón principal -->
+  <div class="barra-acciones">
+    <div class="barra-acciones-in">
+      <span class="estado" id="estadoSeleccion">Ninguna búsqueda marcada</span>
+      <button class="btn" id="btnGenerar" onclick="generarDocumentoMultiple()" disabled>Generar informe PDF</button>
+    </div>
   </div>
 
-<script src="libs/pdfmake/pdfmake.min.js"></script>
-<script src="libs/pdfmake/vfs_fonts.js"></script>
-<script src="js/pdf.js"></script>
-
-<script src="js/app.js"></script>
+  <script src="libs/pdfmake/pdfmake.min.js"></script>
+  <script src="libs/pdfmake/vfs_fonts.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/app.js"></script>
 
 </body>
 </html>
