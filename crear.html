@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Crear Búsqueda</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1>Crear / Editar Búsqueda</h1>
+
+    <label>Nombre de la búsqueda:</label>
+    <input id="nombreBusqueda" class="input" placeholder="Ej: Búsqueda PEP">
+
+    <h2>Fuentes disponibles</h2>
+
+    <div class="filters">
+      <input id="filtroTexto" class="input" placeholder="Buscar por título..." onkeyup="filtrarFuentes()">
+
+      <select id="filtroTipo" class="input" onchange="filtrarFuentes()">
+        <option value="">Filtrar por tipo</option>
+        <option value="PEP">PEP</option>
+        <option value="Noticias">Noticias</option>
+        <option value="Judiciales">Judiciales</option>
+        <option value="Sancionado">Sancionado</option>
+        <option value="Sujeto Obligado">Sujeto Obligado</option>
+        <option value="Terrorismo">Terrorismo</option>
+      </select>
+
+      <select id="filtroPais" class="input" onchange="filtrarFuentes()">
+        <option value="">Filtrar por país</option>
+      </select>
+    </div>
+
+    <div id="listaFuentes" class="cards"></div>
+
+    <button class="btn" onclick="guardarBusqueda()">Guardar búsqueda</button>
+    <a class="btn" href="index.html">Volver</a>
+
+  </div>
+
+  <!-- PDF -->
+  <script src="libs/pdfmake/pdfmake.min.js"></script>
+  <script src="libs/pdfmake/vfs_fonts.js"></script>
+  <script src="js/pdf.js"></script>
+
+  <!-- SOLO crear.js -->
+  <script src="js/crear.js"></script>
+
+</body>
+</html>

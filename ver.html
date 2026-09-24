@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detalle de Búsqueda</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <div class="container">
+
+    <h1 id="tituloBusqueda"></h1>
+
+    <h2>Fuentes seleccionadas</h2>
+    <div id="fuentesSeleccionadas" class="cards"></div>
+
+    <a class="btn" onclick="generarDocumento()">Generar PDF</a>
+    <a class="btn" href="index.html">Volver</a>
+
+  </div>
+
+  <!-- PDF -->
+  <script src="libs/pdfmake/pdfmake.min.js"></script>
+  <script src="libs/pdfmake/vfs_fonts.js"></script>
+  <script src="js/pdf.js"></script>
+
+  <!-- VER.JS (FUNDAMENTAL) -->
+  <script src="js/ver.js"></script>
+
+</body>
+</html>
+
