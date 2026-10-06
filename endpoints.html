@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Endpoints · Listas de Informados</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-in">
+      <a class="marca" href="index.html">
+        <span class="marca-logo"><span style="background:#6F80E0"></span><span style="background:#F08A3E"></span><span style="background:#F2685F"></span></span>
+        Compliance One <small>Listas de Informados</small>
+      </a>
+      <nav class="nav">
+        <a href="index.html">Informe</a>
+        <a href="crear.html">Nueva búsqueda</a>
+        <a href="endpoints.html" class="activo">Endpoints</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <div class="encabezado">
+      <div>
+        <h1>Endpoints del cliente</h1>
+        <p>Cargá el tenant, marcá los módulos y copiá los endpoints o el mail listo.</p>
+      </div>
+      <div class="segmentado" role="radiogroup" aria-label="Qué querés armar">
+        <button role="radio" data-modo="endpoints" aria-checked="true">Solo endpoints</button>
+        <button role="radio" data-modo="mail" aria-checked="false">Endpoints + mail</button>
+      </div>
+    </div>
+
+    <div class="panel">
+
+      <!-- Columna izquierda: datos -->
+      <aside class="lateral">
+        <section class="caja">
+          <h2>Datos</h2>
+
+          <label for="clienteInput">Cliente</label>
+          <input id="clienteInput" class="input" placeholder="Nombre del cliente" autocomplete="off">
+
+          <label for="tenantInput">Tenant</label>
+          <input id="tenantInput" class="input" placeholder="Ej: bancoejemplo" autocomplete="off" spellcheck="false">
+          <p class="ayuda" id="tenantAyuda">Solo minúsculas, números y guiones.</p>
+
+          <div id="camposModulos"></div>
+
+          <div id="bloqueNombre" hidden>
+            <label for="nombreInput">Tu nombre</label>
+            <input id="nombreInput" class="input" placeholder="Para presentarte en el mail" autocomplete="name">
+          </div>
+        </section>
+      </aside>
+
+      <!-- Columna derecha -->
+      <section>
+        <div class="barra-lista">
+          <h2>Módulos</h2>
+        </div>
+        <div id="listaModulos" class="modulos"></div>
+
+        <div class="barra-lista" style="margin-top:28px">
+          <h2>Endpoints</h2>
+        </div>
+        <div id="listaEndpoints"></div>
+
+        <div id="bloqueMail" hidden>
+          <div class="barra-lista" style="margin-top:28px">
+            <h2>Mail</h2>
+          </div>
+          <div class="mail">
+            <div class="mail-asunto">
+              <span class="mail-etiqueta">Asunto</span>
+              <span id="mailAsunto"></span>
+            </div>
+            <div class="mail-cuerpo" id="mailCuerpo"></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="barra-acciones">
+    <div class="barra-acciones-in">
+      <span class="estado" id="estadoEndpoints"></span>
+      <span id="accionesEndpoints" style="display:contents">
+        <button class="btn" onclick="copiarTodosLosEndpoints()">Copiar todos los endpoints</button>
+      </span>
+      <span id="accionesMail" style="display:none">
+        <button class="btn btn-sec" onclick="copiarAsunto()">Copiar asunto</button>
+        <button class="btn btn-sec" onclick="abrirEnCorreo()">Abrir en el correo</button>
+        <button class="btn" onclick="copiarMail()">Copiar mail</button>
+      </span>
+    </div>
+  </div>
+
+  <script src="js/comun.js"></script>
+  <script src="js/endpoints.js"></script>
+
+</body>
+</html>
