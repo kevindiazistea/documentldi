@@ -474,3 +474,164 @@ label, .etiqueta {
   .barra-acciones .estado { width: 100%; }
   .barra-acciones .btn { flex: 1; }
 }
+
+/* ======================================
+   ENDPOINTS
+   ====================================== */
+
+/* Selector de modo */
+.segmentado {
+  display: inline-flex;
+  background: #E1E6ED;
+  border-radius: 8px;
+  padding: 3px;
+}
+.segmentado button {
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  background: none;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.segmentado button[aria-checked="true"] {
+  background: #fff;
+  color: var(--tinta);
+  box-shadow: 0 1px 3px rgba(22, 35, 59, .15);
+}
+
+/* Módulos */
+.modulos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 10px;
+}
+.modulo {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 14px 16px;
+  cursor: pointer;
+  margin: 0;
+  font-weight: 400;
+  font-size: 15px;
+}
+.modulo input { width: 18px; height: 18px; margin: 2px 0 0; accent-color: var(--acento); }
+.modulo.marcada { border-color: var(--acento); box-shadow: 0 0 0 1px var(--acento); }
+.modulo .card-title, .modulo .card-sub { display: block; }
+.modulo .card-sub { margin-bottom: 0; }
+
+/* Lista de endpoints */
+.grupo-endpoints {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+.grupo-titulo {
+  font-weight: 600;
+  padding: 10px 16px;
+  background: #F7F9FB;
+  border-bottom: 1px solid #E8ECF1;
+}
+.endpoint {
+  display: grid;
+  grid-template-columns: 110px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 8px 10px 16px;
+  border-bottom: 1px solid #E8ECF1;
+}
+.endpoint:last-child { border-bottom: none; }
+.endpoint-nombre { font-size: 13px; color: var(--tinta-suave); }
+.endpoint-url {
+  font-family: var(--mono);
+  font-size: 13px;
+  word-break: break-all;
+}
+@media (max-width: 600px) {
+  .endpoint { grid-template-columns: 1fr auto; }
+  .endpoint-nombre { grid-column: 1 / -1; }
+}
+
+mark {
+  background: #E3ECF8;
+  color: var(--acento-osc);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+mark.falta { background: #FBEAE9; color: var(--peligro); }
+
+/* Validación del tenant */
+.input-error { border-color: var(--peligro); }
+.input-error:focus { border-color: var(--peligro); box-shadow: 0 0 0 3px rgba(179, 38, 30, .15); }
+.ayuda.error { color: var(--peligro); }
+.link-sugerencia {
+  font: inherit;
+  font-weight: 600;
+  color: var(--acento);
+  background: none;
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Vista previa del mail */
+.mail {
+  background: var(--papel);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+}
+.mail-asunto {
+  display: flex;
+  gap: 12px;
+  align-items: baseline;
+  padding: 12px 20px;
+  border-bottom: 1px solid #E8ECF1;
+  font-weight: 600;
+}
+.mail-etiqueta {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  min-width: 48px;
+}
+.mail-cuerpo { padding: 20px; }
+.mail-cuerpo > div { font-family: var(--fuente) !important; font-size: 15px !important; }
+.mail-cuerpo p { word-break: break-word; }
+
+/* Método, body y líneas de endpoint */
+.endpoint-linea { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.metodo {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--ok);
+  padding: 2px 6px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.endpoint-body {
+  grid-column: 2;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  background: #F4F6F9;
+  border: 1px solid #E8ECF1;
+  border-radius: var(--radio);
+  padding: 10px 12px;
+  overflow-x: auto;
+}
+.endpoint .endpoint-body + .btn-texto { align-self: start; }
+textarea.input { resize: vertical; line-height: 1.5; }
+.mail-cuerpo a { color: var(--acento); }
+@media (max-width: 600px) { .endpoint-body { grid-column: 1 / -1; } }
