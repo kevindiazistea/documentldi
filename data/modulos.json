@@ -1,10 +1,56 @@
 [
   {
+<<<<<<< HEAD
     "id": "checkone",
     "nombre": "CheckOne vía API",
     "nombreCorto": "CheckOne",
     "icono": "check",
     "descripcion": "Consulta de informes vía API.",
+=======
+    "id": "ldi",
+    "nombre": "API Listas de Informados",
+    "porDefecto": true,
+    "variables": [
+      { "id": "vault", "etiqueta": "Código de Vault", "placeholder": "Código del mail de Vault", "recordar": false },
+      {
+        "id": "configuraciones",
+        "etiqueta": "configurationName para pruebas",
+        "tipo": "lista",
+        "recordar": true,
+        "defecto": ["Busqueda General", "Busqueda PEP", "Busqueda PEP Extranjera"]
+      }
+    ],
+    "intro": ["Les compartimos la documentación correspondiente a la API:"],
+    "documentacion": [
+      { "nombre": "Documentación Swagger API", "url": "https://api.complianceone.worldsys.io/{tenant}/swagger" }
+    ],
+    "introEndpoints": "A modo de resumen, les comparto endpoints y body, tanto para Authenticate como para el método Evaluate en LDI:",
+    "numerar": true,
+    "endpoints": [
+      {
+        "nombre": "Authentication",
+        "metodo": "POST",
+        "url": "https://api.complianceone.worldsys.io/{tenant}/auth/token",
+        "body": { "grant_type": "password", "username": " ", "password": " " }
+      },
+      {
+        "nombre": "Evaluate",
+        "metodo": "POST",
+        "url": "https://api.complianceone.worldsys.io/{tenant}/evaluate",
+        "body": { "name": " ", "documentId": " ", "taxId": " ", "configurationName": " ", "identification": " " }
+      }
+    ],
+    "cierre": [
+      "En breve les llegará un mail de Vault con las credenciales del usuario de API de Listas de Informados.",
+      "Código de Vault: {vault}",
+      "Para las pruebas, pueden utilizar los configurationName ya configurados en Compliance One:",
+      "{configuraciones}"
+    ]
+  },
+  {
+    "id": "checkone",
+    "nombre": "CheckOne vía API",
+>>>>>>> a01409a7acda076c006d1197a3cddad76a17850b
     "porDefecto": false,
     "endpoints": [
       {
@@ -18,6 +64,7 @@
         "texto": "Luego, el endpoint de consultas (Consulta de Informes v2):",
         "url": "http://checkone.worldsys.com.ar/api/v2/checkone"
       }
+<<<<<<< HEAD
     ],
     "asunto": "CheckOne vía API – {cliente}",
     "introMail": "Les comparto la información de integración de CheckOne vía API para {cliente}:"
@@ -156,3 +203,8 @@
     ]
   }
 ]
+=======
+    ]
+  }
+]
+>>>>>>> a01409a7acda076c006d1197a3cddad76a17850b
