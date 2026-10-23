@@ -1,0 +1,158 @@
+[
+  {
+    "id": "checkone",
+    "nombre": "CheckOne vía API",
+    "nombreCorto": "CheckOne",
+    "icono": "check",
+    "descripcion": "Consulta de informes vía API.",
+    "porDefecto": false,
+    "endpoints": [
+      {
+        "nombre": "Autenticación",
+        "texto": "El endpoint de autenticación:",
+        "url": "http://checkone.worldsys.com.ar/api/login",
+        "nota": "Allí deben colocar las credenciales compartidas de API."
+      },
+      {
+        "nombre": "Consulta de Informes v2",
+        "texto": "Luego, el endpoint de consultas (Consulta de Informes v2):",
+        "url": "http://checkone.worldsys.com.ar/api/v2/checkone"
+      }
+    ],
+    "asunto": "CheckOne vía API – {cliente}",
+    "introMail": "Les comparto la información de integración de CheckOne vía API para {cliente}:"
+  },
+  {
+    "id": "ldi",
+    "nombre": "API Listas de Informados",
+    "nombreCorto": "Listas de Informados",
+    "icono": "lista",
+    "descripcion": "Evaluación de personas contra listas de informados vía API.",
+    "pestanas": [
+      {
+        "nombre": "Informe de fuentes",
+        "url": "informe.html"
+      }
+    ],
+    "porDefecto": true,
+    "variables": [
+      {
+        "id": "vault",
+        "etiqueta": "Código de Vault",
+        "placeholder": "Código del mail de Vault",
+        "recordar": false
+      },
+      {
+        "id": "configuraciones",
+        "etiqueta": "configurationName para pruebas",
+        "tipo": "lista",
+        "recordar": true,
+        "defecto": [
+          "Busqueda General",
+          "Busqueda PEP",
+          "Busqueda PEP Extranjera"
+        ]
+      }
+    ],
+    "intro": [
+      "Les compartimos la documentación correspondiente a la API:"
+    ],
+    "documentacion": [
+      {
+        "nombre": "Documentación Swagger API",
+        "url": "https://api.complianceone.worldsys.io/{tenant}/swagger"
+      }
+    ],
+    "introEndpoints": "A modo de resumen, les comparto endpoints y body, tanto para Authenticate como para el método Evaluate en LDI:",
+    "numerar": true,
+    "endpoints": [
+      {
+        "nombre": "Authentication",
+        "metodo": "POST",
+        "url": "https://api.complianceone.worldsys.io/{tenant}/auth/token",
+        "body": {
+          "grant_type": "password",
+          "username": " ",
+          "password": " "
+        }
+      },
+      {
+        "nombre": "Evaluate",
+        "metodo": "POST",
+        "url": "https://api.complianceone.worldsys.io/{tenant}/evaluate",
+        "body": {
+          "name": " ",
+          "documentId": " ",
+          "taxId": " ",
+          "configurationName": " ",
+          "identification": " "
+        }
+      }
+    ],
+    "cierre": [
+      "En breve les llegará un mail de Vault con las credenciales del usuario de API de Listas de Informados.",
+      "Código de Vault: {vault}",
+      "Para las pruebas, pueden utilizar los configurationName ya configurados en Compliance One:",
+      "{configuraciones}"
+    ],
+    "asunto": "API Listas de Informados – {cliente}",
+    "introMail": "Les comparto la información de integración de la API de Listas de Informados para {cliente}."
+  },
+  {
+    "id": "saml",
+    "nombre": "SAML",
+    "nombreCorto": "SAML",
+    "icono": "llave",
+    "descripcion": "Inicio de sesión con el proveedor de identidad (IdP) del cliente.",
+    "porDefecto": false,
+    "unidad": [
+      "dato del SP",
+      "datos del SP"
+    ],
+    "asunto": "Configuración de autenticación SAML – {cliente}",
+    "introMail": "Les escribo para acompañarlos en la configuración de la autenticación SAML de {cliente} en Compliance ONE.",
+    "adjunto": {
+      "nombre": "Instructivo de Configuración de Autenticación SAML",
+      "archivo": "docs/instructivo-saml.pdf"
+    },
+    "intro": [
+      "Les adjunto el instructivo con el paso a paso de la configuración.",
+      "Para dar de alta la aplicación en su proveedor de identidad (IdP), estos son los datos de Compliance ONE como proveedor de servicios (SP):"
+    ],
+    "endpointsComoLista": true,
+    "endpoints": [
+      {
+        "nombre": "Issuer",
+        "url": "https://portfolio-microservice.dev.apicompliance.worldsysweb.com/"
+      },
+      {
+        "nombre": "Assertion Consumer Service URL",
+        "url": "https://portfolio-microservice.dev.apicompliance.worldsysweb.com/api/TokenAuth/SamlConsume"
+      }
+    ],
+    "cierre": [
+      "El IdP debe enviar los siguientes claims, que tienen que coincidir exactamente con los configurados en la plataforma (los marcados con * son obligatorios):",
+      {
+        "lista": [
+          "ID del usuario (identificador único)*: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+          "Nombre*: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname",
+          "Apellido*: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname",
+          "Correo electrónico*: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+          "Número de teléfono: http://schemas.xmlsoap.org/ws/2005/05/identity/claims/phonenumber",
+          "Roles/Grupos asignados*: http://schemas.microsoft.com/ws/2008/06/identity/claims/groups"
+        ]
+      },
+      "El correo electrónico debe ser único: no puede estar asociado a otro usuario de la plataforma, ya sea por SAML o como usuario del sistema.",
+      "Los roles creados en Compliance ONE deben tener exactamente el mismo nombre que los grupos que envía el IdP, ya que la asignación se hace por nombre.",
+      "Una vez configurado el IdP, en Compliance ONE (Administración > Configuración > External Login Settings) se deben completar los siguientes datos del IdP:",
+      {
+        "lista": [
+          "URL del proveedor de identidad (IdP)",
+          "Entity ID del IdP",
+          "URL de Metadata",
+          "Certificado público del IdP (X509Certificate)"
+        ]
+      }
+    ]
+  }
+]

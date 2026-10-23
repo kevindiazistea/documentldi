@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mails · worldsync</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-activo="mails" data-migas='[["Entrega"],["Mails"]]'>
+
+  <main class="container">
+    <div class="encabezado">
+      <div>
+        <h1>Mails</h1>
+        <p>Elegí los módulos y copiá cada mail listo para pegar en tu correo.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <aside class="lateral">
+        <section class="caja">
+          <h2>Datos del mail</h2>
+          <span class="etiqueta">Firma</span>
+          <div id="resumenFirma" style="margin-bottom:16px"></div>
+          <span class="etiqueta">Cliente</span>
+          <div id="resumenCliente" style="margin-bottom:4px"></div>
+        </section>
+        <section class="caja" id="cajaVariables" hidden>
+          <h2>Datos de los módulos</h2>
+          <div id="camposVariables"></div>
+        </section>
+      </aside>
+
+      <section>
+        <span class="etiqueta">Módulos</span>
+        <div class="selector-modulos" id="selectorModulos" style="margin-bottom:20px"></div>
+        <div id="listaMails" class="lista-mails"></div>
+      </section>
+    </div>
+  </main>
+
+  <script src="js/comun.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/modulos.js"></script>
+  <script src="js/mails.js"></script>
+</body>
+</html>

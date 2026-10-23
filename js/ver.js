@@ -14,12 +14,13 @@ async function cargarBusqueda() {
       <div class="vacio">
         <strong>No encontramos esa búsqueda</strong>
         <p>Puede que se haya eliminado.</p>
-        <a class="btn" href="index.html">Volver al panel</a>
+        <a class="btn" href="informe.html">Volver al informe</a>
       </div>`;
     return;
   }
 
   document.getElementById("tituloBusqueda").textContent = busquedaActual.nombre.trim();
+  ponerMigas([["Módulos"], ["Listas de Informados", "modulo.html?id=ldi"], ["Informe de fuentes", "informe.html"], [busquedaActual.nombre.trim()]]);
   document.getElementById("btnEditar").href = `crear.html?edit=${id}`;
   document.getElementById("clienteActual").textContent = leerCliente() || "sin cargar";
 

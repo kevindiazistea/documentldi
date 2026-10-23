@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Módulo · worldsync</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-activo="" data-migas='[["Módulos"]]'>
+
+  <main class="container">
+    <section class="cabecera">
+      <div class="cabecera-banner chico"></div>
+      <div class="cabecera-cuerpo">
+        <div class="cabecera-avatar icono" id="moduloIcono"></div>
+        <div class="cabecera-datos">
+          <h1 id="moduloNombre">Módulo</h1>
+          <p id="moduloDescripcion"></p>
+          <div class="pildoras" id="moduloPildoras"></div>
+          <nav class="pestanas" id="moduloPestanas"></nav>
+        </div>
+      </div>
+    </section>
+
+    <div id="avisoTenant"></div>
+    <div id="listaEndpoints"></div>
+  </main>
+
+  <div class="barra-acciones">
+    <div class="barra-acciones-in">
+      <span class="estado" id="estadoModulo"></span>
+      <button class="btn btn-sec" onclick="copiarTodo()">Copiar todo</button>
+      <a class="btn" id="btnArmarMail" href="mails.html">Armar mail</a>
+    </div>
+  </div>
+
+  <script src="js/comun.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/modulos.js"></script>
+  <script src="js/modulo.js"></script>
+</body>
+</html>

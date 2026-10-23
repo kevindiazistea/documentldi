@@ -3,23 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Detalle de búsqueda · Listas de Informados</title>
+  <title>Detalle de búsqueda · worldsync</title>
   <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+<body data-activo="ldi" data-migas='[["Módulos"],["Listas de Informados","modulo.html?id=ldi"],["Informe de fuentes","informe.html"],["Detalle"]]'>
 
-  <header class="topbar">
-    <div class="topbar-in">
-      <a class="marca" href="index.html">
-        <span class="marca-logo"><span style="background:#6F80E0"></span><span style="background:#F08A3E"></span><span style="background:#F2685F"></span></span>
-        Compliance One <small>Listas de Informados</small>
-      </a>
-      <nav class="nav">
-        <a href="index.html">Informe</a>
-        <a href="crear.html">Nueva búsqueda</a>
-      </nav>
-    </div>
-  </header>
+  
 
   <main class="container">
 
@@ -50,7 +39,7 @@
   <div class="barra-acciones">
     <div class="barra-acciones-in">
       <span class="estado">Cliente: <b id="clienteActual"></b></span>
-      <a class="btn btn-sec" href="index.html">Volver</a>
+      <a class="btn btn-sec" href="informe.html">Volver</a>
       <button class="btn" onclick="generarDocumento()">Generar PDF</button>
     </div>
   </div>
@@ -58,6 +47,7 @@
   <script src="libs/pdfmake/pdfmake.min.js"></script>
   <script src="libs/pdfmake/vfs_fonts.js"></script>
   <script src="js/comun.js"></script>
+  <script src="js/layout.js"></script>
   <script src="js/logo.js"></script>
   <script src="js/pdf.js"></script>
   <script src="js/ver.js"></script>

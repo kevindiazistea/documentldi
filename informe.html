@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Informe de fuentes · worldsync</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body data-activo="ldi" data-migas='[["Módulos"],["Listas de Informados","modulo.html?id=ldi"],["Informe de fuentes"]]'>
+
+  
+
+  <main class="container">
+
+    <section class="cabecera">
+      <div class="cabecera-banner chico"></div>
+      <div class="cabecera-cuerpo">
+        <div class="cabecera-avatar icono" id="iconoLdi"></div>
+        <div class="cabecera-datos">
+          <h1>Listas de Informados</h1>
+          <p>Elegí las búsquedas que querés incluir en el informe PDF del cliente.</p>
+          <nav class="pestanas">
+            <a href="modulo.html?id=ldi">Endpoints</a>
+            <a class="activa" href="informe.html">Informe de fuentes</a>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <div class="panel">
+
+      <!-- Columna izquierda: datos del informe -->
+      <aside class="lateral">
+        <section class="caja">
+          <h2>Datos del informe</h2>
+
+          <span class="etiqueta">Cliente</span>
+          <div id="resumenCliente" style="margin-bottom:16px"></div>
+
+          <label for="modeloSelect">Cargar modelo</label>
+          <select id="modeloSelect" class="input" onchange="cargarModelo()">
+            <option value="">Elegir un modelo…</option>
+            <option value="estandar">Modelo estándar</option>
+          </select>
+          <p class="ayuda">Un modelo reemplaza las búsquedas actuales por un set prearmado.</p>
+        </section>
+      </aside>
+
+      <!-- Columna derecha: búsquedas -->
+      <section>
+        <div class="barra-lista">
+          <h2>Búsquedas</h2>
+          <div class="acciones">
+            <button class="btn-texto" onclick="seleccionarTodo()">Marcar todas</button>
+            <button class="btn-texto" onclick="deseleccionarTodo()">Desmarcar</button>
+            <a class="btn btn-sec" href="crear.html">+ Nueva búsqueda</a>
+          </div>
+        </div>
+
+        <div id="listaBusquedas" class="cards"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Barra fija con el botón principal -->
+  <div class="barra-acciones">
+    <div class="barra-acciones-in">
+      <span class="estado" id="estadoSeleccion">Ninguna búsqueda marcada</span>
+      <button class="btn" id="btnGenerar" onclick="generarDocumentoMultiple()" disabled>Generar informe PDF</button>
+    </div>
+  </div>
+
+  <script src="libs/pdfmake/pdfmake.min.js"></script>
+  <script src="libs/pdfmake/vfs_fonts.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/logo.js"></script>
+  <script src="js/pdf.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

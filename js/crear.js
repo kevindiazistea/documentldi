@@ -33,8 +33,8 @@ async function initCrear() {
       ponerSimilitud("similitud", leerSimilitud(busqueda, "similitud"));
       ponerSimilitud("similitudInversa", leerSimilitud(busqueda, "similitudInversa"));
       document.getElementById("tituloPagina").textContent = "Editar búsqueda";
-      document.getElementById("navCrear").classList.remove("activo");
-      document.title = "Editar búsqueda · Listas de Informados";
+      document.title = "Editar búsqueda · worldsync";
+      ponerMigas([["Módulos"], ["Listas de Informados", "modulo.html?id=ldi"], ["Informe de fuentes", "informe.html"], ["Editar búsqueda"]]);
     } else {
       editId = null;
     }
@@ -192,7 +192,7 @@ function guardarBusqueda() {
   else data.push(busqueda);
 
   guardarBusquedas(data);
-  window.location.href = "index.html";
+  window.location.href = "informe.html";
 }
 
 initCrear();

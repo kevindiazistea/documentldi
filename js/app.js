@@ -1,5 +1,5 @@
 // ===============================
-// APP.JS - Panel principal (index.html)
+// APP.JS - Informe de fuentes de LDI (informe.html)
 // ===============================
 
 const modelos = {
@@ -39,15 +39,18 @@ let fuentesIndex = [];
 // CLIENTE (queda guardado aunque cambies de página)
 // ===============================
 function obtenerCliente() {
-  const input = document.getElementById("clienteInput");
-  const valor = input ? input.value.trim() : "";
-  return valor || "Sin cliente";
+  return leerCliente() || "Sin cliente";
 }
 
-function initCliente() {
-  const input = document.getElementById("clienteInput");
-  input.value = leerCliente();
-  input.addEventListener("input", () => guardarCliente(input.value.trim()));
+// El cliente se elige en la barra lateral (cliente en curso)
+function pintarClienteInforme() {
+  const cliente = leerCliente();
+  document.getElementById("resumenCliente").innerHTML = cliente
+    ? `<div style="display:flex;align-items:center;gap:10px">
+         <b style="flex:1;min-width:0">${esc(cliente)}</b>
+         <button class="btn-texto" data-abrir="cliente">Cambiar</button>
+       </div>`
+    : `<button class="btn btn-sec btn-bloque" data-abrir="cliente">Elegir cliente</button>`;
 }
 
 // ===============================
@@ -203,7 +206,9 @@ async function generarDocumentoMultiple() {
 // INICIALIZAR INDEX
 // ===============================
 async function initIndex() {
-  initCliente();
+  pintarClienteInforme();
+  document.addEventListener("cliente-cambiado", pintarClienteInforme);
+  document.getElementById("iconoLdi").innerHTML = icono("lista", 44);
 
   // Cualquier cambio en un checkbox actualiza la barra de abajo
   document.getElementById("listaBusquedas")

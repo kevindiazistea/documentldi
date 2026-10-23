@@ -106,3 +106,82 @@ function leerSimilitud(busqueda, campo) {
   const v = Number(busqueda?.[campo]);
   return Number.isFinite(v) ? Math.min(100, Math.max(0, Math.round(v))) : SIMILITUD_DEFECTO;
 }
+
+// ---------- Perfil del consultor (manual por ahora) ----------
+function leerPerfil() {
+  let p = {};
+  try { p = JSON.parse(localStorage.getItem("perfil")) || {}; } catch {}
+  // Si venía de la versión anterior, aprovechamos el nombre guardado
+  if (!p.nombre && localStorage.getItem("remitente")) p.nombre = localStorage.getItem("remitente");
+  return {
+    nombre: p.nombre || "",
+    puesto: p.puesto || "Consultor",
+    area: p.area || "",
+    email: p.email || ""
+  };
+}
+
+function guardarPerfil(p) {
+  localStorage.setItem("perfil", JSON.stringify(p));
+  document.dispatchEvent(new CustomEvent("perfil-cambiado"));
+}
+
+function iniciales(nombre) {
+  const partes = (nombre || "").trim().split(/\s+/).filter(Boolean);
+  if (!partes.length) return "?";
+  return (partes[0][0] + (partes.length > 1 ? partes[partes.length - 1][0] : "")).toUpperCase();
+}
+
+// ---------- Cliente y tenant en curso ----------
+function leerTenant() {
+  return localStorage.getItem("tenant") || "";
+}
+
+function guardarClienteTenant(cliente, tenant) {
+  guardarCliente(cliente);
+  localStorage.setItem("tenant", tenant);
+  document.dispatchEvent(new CustomEvent("cliente-cambiado"));
+}
+
+const TENANT_VALIDO = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+// "Banco Ejemplo" -> "bancoejemplo"
+function sugerirTenant(txt) {
+  return (txt || "").toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9-]+/g, "").replace(/^-+|-+$/g, "");
+}
+
+function estadoTenant(t = leerTenant()) {
+  t = (t || "").trim();
+  if (!t) return { ok: false, vacio: true };
+  if (TENANT_VALIDO.test(t)) return { ok: true, valor: t };
+  return { ok: false, sugerencia: sugerirTenant(t) };
+}
+
+// ---------- Copiar al portapapeles ----------
+async function copiarTexto(texto, mensaje = "Copiado") {
+  try {
+    await navigator.clipboard.writeText(texto);
+  } catch {
+    // Plan B para navegadores viejos o páginas sin https
+    const ta = document.createElement("textarea");
+    ta.value = texto;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    ta.remove();
+  }
+  aviso(mensaje);
+}
+
+// ---------- Módulos (data/modulos.json) ----------
+let _modulosCache = null;
+
+async function obtenerModulos() {
+  if (_modulosCache) return _modulosCache;
+  const res = await fetch("data/modulos.json");
+  if (!res.ok) throw new Error("No se pudo leer data/modulos.json");
+  _modulosCache = await res.json();
+  return _modulosCache;
+}
